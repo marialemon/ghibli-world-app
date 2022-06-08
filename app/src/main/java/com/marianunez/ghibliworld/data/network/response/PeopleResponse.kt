@@ -7,5 +7,4 @@ data class PeopleResponse(
     val age: String = "",
     val films: List<FilmsResponse> = listOf(),
     val species: SpeciesResponse = SpeciesResponse(),
-    val url: String = ""
 )
