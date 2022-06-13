@@ -9,7 +9,7 @@ class ApiFactoryService {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(ApiConstants.BASE_URL)
-            .build()
-            .create(apiClass)
+            .build() // crea la clase retrofit
+            .create(apiClass) // esto crea la implementación de la interfaz que se le pasa
     }
 }
