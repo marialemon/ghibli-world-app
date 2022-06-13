@@ -11,17 +11,21 @@ import retrofit2.http.Query
 interface ApiRestService {
 
     @GET(ApiConstants.FILMS)
-    fun getFilms(@Query("limit") limit: Int = 20): FilmsResponse
+    suspend fun getFilms(
+        @Query("limit") limit: Int = 20,
+        @Query("ts") timeStamp: String,
+        @Query("orderBy") orderBy: String
+    ): List<FilmsResponse>
 
     @GET(ApiConstants.PEOPLE)
-    fun getPeople(@Query("limit") limit: Int = 20): PeopleResponse
+    suspend fun getPeople(@Query("limit") limit: Int = 20): PeopleResponse
 
     @GET(ApiConstants.LOCATIONS)
-    fun getLocations(@Query("limit") limit: Int = 20): LocationsResponse
+    suspend fun getLocations(@Query("limit") limit: Int = 20): LocationsResponse
 
     @GET(ApiConstants.SPECIES)
-    fun getSpecies(@Query("limit") limit: Int = 20): SpeciesResponse
+    suspend fun getSpecies(@Query("limit") limit: Int = 20): SpeciesResponse
 
     @GET(ApiConstants.VEHICLES)
-    fun getVehicles(@Query("limit") limit: Int = 20): VehiclesResponse
+    suspend fun getVehicles(@Query("limit") limit: Int = 20): VehiclesResponse
 }
