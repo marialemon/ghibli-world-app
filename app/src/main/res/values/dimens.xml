@@ -1,3 +1,7 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="margin_xl">32dp</dimen>
+    <dimen name="margin_l">24dp</dimen>
+    <dimen name="margin_default">16dp</dimen>
+    <dimen name="margin_s">12dp</dimen>
+    <dimen name="margin_xs">6dp</dimen>
 </resources>
