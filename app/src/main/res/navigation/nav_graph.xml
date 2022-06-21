@@ -9,7 +9,7 @@
         android:id="@+id/FirstFragment"
         android:name="com.marianunez.ghibliworld.ui.FirstFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_films_list">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
