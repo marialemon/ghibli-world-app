@@ -14,10 +14,10 @@ data class FilmsResponse(
     val releaseDate: String = "",
     @SerializedName("rt_score")
     val rtScore: String = "",
-    val people: List<PeopleResponse> = listOf(),
-    val species: List<SpeciesResponse> = listOf(),
-    val locations: List<LocationsResponse> = listOf(),
-    val vehicles: List<VehiclesResponse> = listOf(),
+    val people: List<String> = listOf(),
+    val species: List<String> = listOf(),
+    val locations: List<String> = listOf(),
+    val vehicles: List<String> = listOf(),
 )
 
 /** ponemos un valor por defecto aunque sea una string vacía
