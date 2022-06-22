@@ -12,7 +12,7 @@ interface ApiRestService {
 
     @GET(ApiConstants.FILMS)
     suspend fun getFilms(
-        @Query("limit") limit: Int = 20,
+        @Query("limit") limit: Int = 40,
         @Query("ts") timeStamp: String,
         @Query("orderBy") orderBy: String
     ): List<FilmsResponse>
