@@ -9,10 +9,11 @@ import com.marianunez.ghibliworld.commons.loadImageByUrl
 import com.marianunez.ghibliworld.databinding.FilmItemBinding
 import com.marianunez.ghibliworld.domain.model.FilmsModel
 
-class FilmsListAdapter: RecyclerView.Adapter<FilmsListViewHolder>() {
+class FilmsListAdapter(private val listener: (FilmsModel) -> Unit) :
+    RecyclerView.Adapter<FilmsListViewHolder>() {
 
     private var filmList: List<FilmsModel> = emptyList()
-    fun setData(list: List<FilmsModel>){
+    fun setData(list: List<FilmsModel>) {
         filmList = list
         notifyDataSetChanged()
     }
@@ -24,19 +25,20 @@ class FilmsListAdapter: RecyclerView.Adapter<FilmsListViewHolder>() {
 
     override fun onBindViewHolder(holder: FilmsListViewHolder, position: Int) {
         val item = filmList[position]
-        holder.bind(item)
+        holder.bind(item, listener)
     }
 
     override fun getItemCount(): Int = filmList.size
 }
 
-class FilmsListViewHolder(view: View) : RecyclerView.ViewHolder(view){
+class FilmsListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = FilmItemBinding.bind(view)
 
-    fun bind(item: FilmsModel){
+    fun bind(item: FilmsModel, listener: (FilmsModel) -> Unit) {
         with(binding) {
             filmTitle.text = item.title
             filmImg.loadImageByUrl(item.movieBanner)
+            itemView.setOnClickListener { listener(item) }
         }
     }
 }
