@@ -1,4 +1,4 @@
-package com.marianunez.ghibliworld.ui
+package com.marianunez.ghibliworld.ui.filmslist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

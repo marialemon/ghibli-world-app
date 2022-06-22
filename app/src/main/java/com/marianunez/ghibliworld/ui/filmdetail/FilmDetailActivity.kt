@@ -1,4 +1,4 @@
-package com.marianunez.ghibliworld.ui
+package com.marianunez.ghibliworld.ui.filmdetail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

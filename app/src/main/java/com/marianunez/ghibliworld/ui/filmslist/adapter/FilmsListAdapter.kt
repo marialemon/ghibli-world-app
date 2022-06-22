@@ -1,4 +1,4 @@
-package com.marianunez.ghibliworld.ui.adapter
+package com.marianunez.ghibliworld.ui.filmslist.adapter
 
 import android.view.View
 import android.view.ViewGroup
