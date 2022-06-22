@@ -1,5 +1,6 @@
 package com.marianunez.ghibliworld.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.marianunez.ghibliworld.R
 import com.marianunez.ghibliworld.databinding.FragmentFilmsListBinding
+import com.marianunez.ghibliworld.domain.model.FilmsModel
 import com.marianunez.ghibliworld.ui.adapter.FilmsListAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -51,8 +53,8 @@ class FirstFragment : Fragment() {
 
     private fun initUI() {
         recyclerView = binding.filmsList
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = FilmsListAdapter()
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
+        recyclerView.adapter = FilmsListAdapter { goToDetail(it) }
 
         GlobalScope.launch(Dispatchers.Main) {
             withContext(Dispatchers.IO) {
@@ -63,6 +65,11 @@ class FirstFragment : Fragment() {
         viewModel.filmsList.observe(viewLifecycleOwner) { list ->
             (recyclerView.adapter as FilmsListAdapter).setData(list)
         }
+    }
+
+    private fun goToDetail(filmsModel: FilmsModel) {
+        startActivity(Intent(context, FilmDetailActivity::class.java))
+        //    Toast.makeText(context, filmsModel.title, Toast.LENGTH_SHORT)
     }
 
     override fun onDestroyView() {
