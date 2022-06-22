@@ -4,7 +4,6 @@
     android:id="@+id/filmCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="@dimen/margin_xs"
     app:cardCornerRadius="@dimen/margin_default"
     app:cardElevation="@dimen/cardview_default_elevation"
     app:cardUseCompatPadding="true">
@@ -16,7 +15,7 @@
         <ImageView
             android:id="@+id/filmImg"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="120dp"
             android:layout_alignParentTop="true"
             android:contentDescription="Image" />
 
@@ -26,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/filmImg"
             android:gravity="center"
-            android:padding="@dimen/margin_s"
+            android:padding="@dimen/margin_xs"
             android:text="prueba" />
 
     </RelativeLayout>

@@ -13,7 +13,9 @@ class FilmsListAdapter(private val listener: (FilmsModel) -> Unit) :
     RecyclerView.Adapter<FilmsListViewHolder>() {
 
     private var filmList: List<FilmsModel> = emptyList()
+
     fun setData(list: List<FilmsModel>) {
+        // aquí recibimos la lista de films y se la asignamos a la variable filmList de la lista vacía
         filmList = list
         notifyDataSetChanged()
     }
