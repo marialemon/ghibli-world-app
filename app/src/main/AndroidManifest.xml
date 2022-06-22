@@ -26,6 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.FilmDetailActivity"
+            android:exported="true"
+            android:label="Film Detail"
+            android:theme="@style/Theme.GhibliWorld">
+        </activity>
     </application>
 
 </manifest>
