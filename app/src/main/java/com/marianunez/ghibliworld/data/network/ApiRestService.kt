@@ -6,6 +6,7 @@ import com.marianunez.ghibliworld.data.network.response.PeopleResponse
 import com.marianunez.ghibliworld.data.network.response.SpeciesResponse
 import com.marianunez.ghibliworld.data.network.response.VehiclesResponse
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiRestService {
@@ -16,6 +17,9 @@ interface ApiRestService {
         @Query("ts") timeStamp: String,
         @Query("orderBy") orderBy: String
     ): List<FilmsResponse>
+
+    @GET(ApiConstants.FILM_DETAIL)
+    suspend fun getFilmDetail(@Path("id") filmId: String): FilmsResponse
 
     @GET(ApiConstants.PEOPLE)
     suspend fun getPeople(@Query("limit") limit: Int = 20): PeopleResponse
