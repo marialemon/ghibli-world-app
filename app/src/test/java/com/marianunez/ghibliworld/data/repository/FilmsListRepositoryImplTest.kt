@@ -11,13 +11,15 @@ import org.junit.Test
 
 class FilmsListRepositoryImplTest {
     private val filmsListCloudDataSource = mockk<FilmsListCloudDataSource>()
-    private val filmsListRepositoryImpl = FilmsListRepositoryImpl(filmsListCloudDataSource)
+
+    // sut -> system under test
+    private val sut = FilmsListRepositoryImpl(filmsListCloudDataSource)
 
     @Test
     fun get_films_list_OK() = runBlocking {
         // si no ponemos runBloquing dará un error de que la función tiene que ser suspend
         coEvery { filmsListCloudDataSource.getFilmsList() } returns fakeFilmsListResponse
-        val actual = filmsListRepositoryImpl.getFilmsList()
+        val actual = sut.getFilmsList()
         assertThat(actual).isEqualTo(fakeFilmsListResponse)
     }
 }
