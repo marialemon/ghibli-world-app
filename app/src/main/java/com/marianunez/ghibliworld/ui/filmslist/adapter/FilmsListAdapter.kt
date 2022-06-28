@@ -12,7 +12,7 @@ import com.marianunez.ghibliworld.domain.model.FilmsModel
 class FilmsListAdapter(private val listener: (FilmsModel) -> Unit) :
     RecyclerView.Adapter<FilmsListViewHolder>() {
 
-    private var filmList: List<FilmsModel> = emptyList()
+    private var filmList = listOf<FilmsModel>()
 
     fun setData(list: List<FilmsModel>) {
         // aquí recibimos la lista de films y se la asignamos a la variable filmList de la lista vacía
