@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiFactoryService {
 
-    fun <T> createApi(apiClass: Class<T>): T {
+    fun <T> createApi(apiClass: Class<T>, baseUrl: String): T {
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
@@ -17,7 +17,7 @@ class ApiFactoryService {
 
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(ApiConstants.BASE_URL)
+            .baseUrl(baseUrl)
             .client(client)
             .build() // crea la clase retrofit
             .create(apiClass) // esto crea la implementación de la interfaz que se le pasa
