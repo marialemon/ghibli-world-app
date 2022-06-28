@@ -51,16 +51,18 @@ class FirstFragment : Fragment() {
          * GlobalScope o lifecycleScope
          * GlobalScope sigue llamandose hasta que la app muera, aunque cambies de activity
          * viewLifecycleOwner se pone porque es un fragment, en una activity no se pone
-         */
+
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
-            withContext(Dispatchers.IO) {
-                viewModel.getFilmsList()
-            }
+        withContext(Dispatchers.IO) {
+        viewModel.getFilmsList()
         }
+        }
+         */
+        viewModel.getFilmsList()
         setUpObservers()
     }
 
-    fun setUpObservers() {
+    private fun setUpObservers() {
         /**
          * al observer se le pasa el viewLifecycleOwner porque lo que se ejecuta afecta a la vista del fragment
          * y si no se vincula con el ciclo de vida de la propia vista, puede haber errores
@@ -75,7 +77,9 @@ class FirstFragment : Fragment() {
 
     private fun goToDetail(filmsModel: FilmsModel) {
         startActivity(Intent(context, FilmDetailActivity::class.java).apply {
-            putExtra("Title", filmsModel.title)
+            putExtra("id", filmsModel.id)
+            putExtra("title", filmsModel.title)
+            putExtra("description", filmsModel.description)
         })
     }
 
