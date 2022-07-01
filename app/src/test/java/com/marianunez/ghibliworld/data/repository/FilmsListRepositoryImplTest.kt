@@ -18,8 +18,10 @@ class FilmsListRepositoryImplTest {
     @Test
     fun get_films_list_OK() = runBlocking {
         // si no ponemos runBloquing dará un error de que la función tiene que ser suspend
-        coEvery { filmsListCloudDataSource.getFilmsList() } returns fakeFilmsListResponse
+        coEvery { filmsListCloudDataSource.getFilmsList() } returns Result.success(
+            fakeFilmsListResponse
+        )
         val actual = sut.getFilmsList()
-        assertThat(actual).isEqualTo(fakeFilmsListResponse)
+        assertThat(actual.getOrThrow()).isEqualTo(fakeFilmsListResponse)
     }
 }
