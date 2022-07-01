@@ -17,14 +17,19 @@ class FilmsListViewModel : ViewModel() {
     private val filmsListUseCase = FilmsListUseCase(
         filmsListRepository = FilmsListRepositoryImpl(
             filmsListCloudDataSource = FilmsListCloudDataSource(
-                apiFactoryService = ApiFactoryService())))
+                apiFactoryService = ApiFactoryService()
+            )
+        )
+    )
 
     private val _filmsList = MutableLiveData<List<FilmsModel>>()
     val filmsList: LiveData<List<FilmsModel>> = _filmsList
 
     fun getFilmsList() {
         viewModelScope.launch {
-            _filmsList.postValue(filmsListUseCase.getFilmsList())
+            filmsListUseCase.getFilmsList()
+                .onSuccess { _filmsList.postValue(it) }
+                .onFailure { throw Exception("Errrrrror") }
         }
     }
 }

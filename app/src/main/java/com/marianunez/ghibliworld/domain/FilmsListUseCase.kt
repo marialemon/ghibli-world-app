@@ -6,8 +6,10 @@ import com.marianunez.ghibliworld.domain.model.mapper.toModel
 
 class FilmsListUseCase(private val filmsListRepository: FilmsListRepository) {
 
-    suspend fun getFilmsList(): List<FilmsModel>{
+    suspend fun getFilmsList(): Result<List<FilmsModel>> {
         val response = filmsListRepository.getFilmsList()
-        return response.map { it.toModel() }
+        return response.map { resultListFilmsResponse ->
+            resultListFilmsResponse.map { filmsResponseItem -> filmsResponseItem.toModel() }
+        }
     }
 }

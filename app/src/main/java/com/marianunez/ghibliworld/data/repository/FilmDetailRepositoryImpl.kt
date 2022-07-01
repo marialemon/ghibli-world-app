@@ -8,10 +8,9 @@ class FilmDetailRepositoryImpl(
     private val filmDetailCloudDataSource: FilmDetailCloudDataSource = FilmDetailCloudDataSource(
         ApiFactoryService()
     )
-) :
-    FilmDetailRepository {
+) : FilmDetailRepository {
 
-    override suspend fun getFilmDetail(filmId: String): FilmsResponse {
+    override suspend fun getFilmDetail(filmId: String): Result<FilmsResponse> {
         return filmDetailCloudDataSource.getFilmDetail(filmId)
     }
 }

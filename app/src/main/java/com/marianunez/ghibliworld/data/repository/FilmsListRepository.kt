@@ -4,5 +4,5 @@ import com.marianunez.ghibliworld.data.network.response.FilmsResponse
 
 interface FilmsListRepository {
 
-    suspend fun getFilmsList(): List<FilmsResponse>
+    suspend fun getFilmsList(): Result<List<FilmsResponse>>
 }

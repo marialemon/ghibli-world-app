@@ -12,7 +12,7 @@ class FilmsListRepositoryImpl(
     /* private val filmsListCloudDataSource =
           FilmsListCloudDataSource(apiFactoryService = ApiFactoryService()) */
 
-    override suspend fun getFilmsList(): List<FilmsResponse> {
+    override suspend fun getFilmsList(): Result<List<FilmsResponse>> {
         return filmsListCloudDataSource.getFilmsList()
     }
 }

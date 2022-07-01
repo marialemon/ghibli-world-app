@@ -22,7 +22,9 @@ class FilmDetailViewModel : ViewModel() {
 
     fun getFilmDetail(filmId: String) {
         viewModelScope.launch {
-            _filmDetail.postValue(filmDetailUseCase.getFilmDetail(filmId))
+            filmDetailUseCase.getFilmDetail(filmId)
+                .onSuccess { _filmDetail.postValue(it) }
+                .onFailure { throw Exception("Aquí una excepción") }
         }
     }
 }
