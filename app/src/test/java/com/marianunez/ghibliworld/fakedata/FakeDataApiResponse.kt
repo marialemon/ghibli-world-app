@@ -17,9 +17,11 @@ val fakeFilmsResponse = FilmsResponse(
     vehicles = listOf(),
 )
 
-val fakeFilmsListResponse = listOf(
-    fakeFilmsResponse,
-    fakeFilmsResponse,
-    fakeFilmsResponse,
-    fakeFilmsResponse
+val fakeFilmsListResponse = Result.success(
+    listOf(
+        fakeFilmsResponse,
+        fakeFilmsResponse,
+        fakeFilmsResponse,
+        fakeFilmsResponse
+    )
 )
