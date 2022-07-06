@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.marianunez.ghibliworld.databinding.ActivityFilmDetailBinding
+import com.marianunez.ghibliworld.ui.FILM_DESCRIPTION
+import com.marianunez.ghibliworld.ui.FILM_ID
+import com.marianunez.ghibliworld.ui.FILM_TITLE
 
 class FilmDetailActivity : AppCompatActivity() {
 
@@ -21,9 +24,9 @@ class FilmDetailActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        val id = intent.extras?.getString("id") ?: ""
-        val title = intent.extras?.getString("title") ?: ""
-        val description = intent.extras?.getString("description") ?: ""
+        val id = intent.extras?.getString(FILM_ID) ?: ""
+        val title = intent.extras?.getString(FILM_TITLE) ?: ""
+        val description = intent.extras?.getString(FILM_DESCRIPTION) ?: ""
 
         viewModel.getFilmDetail(id)
         // viewModel.filmDetail.observe(this) { film -> binding.filmTitle.text = film.title }

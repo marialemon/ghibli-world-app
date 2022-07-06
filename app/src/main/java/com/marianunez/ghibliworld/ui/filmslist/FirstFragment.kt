@@ -7,19 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.marianunez.ghibliworld.R
 import com.marianunez.ghibliworld.databinding.FragmentFilmsListBinding
 import com.marianunez.ghibliworld.domain.model.FilmsModel
+import com.marianunez.ghibliworld.ui.FILM_DESCRIPTION
+import com.marianunez.ghibliworld.ui.FILM_ID
+import com.marianunez.ghibliworld.ui.FILM_TITLE
 import com.marianunez.ghibliworld.ui.filmdetail.FilmDetailActivity
 import com.marianunez.ghibliworld.ui.filmslist.adapter.FilmsListAdapter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class FirstFragment : Fragment() {
 
@@ -77,9 +73,9 @@ class FirstFragment : Fragment() {
 
     private fun goToDetail(filmsModel: FilmsModel) {
         startActivity(Intent(context, FilmDetailActivity::class.java).apply {
-            putExtra("id", filmsModel.id)
-            putExtra("title", filmsModel.title)
-            putExtra("description", filmsModel.description)
+            putExtra(FILM_ID, filmsModel.id)
+            putExtra(FILM_TITLE, filmsModel.title)
+            putExtra(FILM_DESCRIPTION, filmsModel.description)
         })
     }
 
