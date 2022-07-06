@@ -29,7 +29,7 @@ class FilmsListViewModel : ViewModel() {
         viewModelScope.launch {
             filmsListUseCase.getFilmsList()
                 .onSuccess { _filmsList.postValue(it) }
-                .onFailure { throw Exception("Errrrrror") }
+                .onFailure { throw Exception("Connection with the server failed")/*con esto la app peta */}
         }
     }
 }
