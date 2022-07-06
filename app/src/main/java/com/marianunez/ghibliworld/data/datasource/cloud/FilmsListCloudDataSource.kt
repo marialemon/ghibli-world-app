@@ -7,13 +7,13 @@ import com.marianunez.ghibliworld.data.network.response.FilmsResponse
 import retrofit2.HttpException
 import java.util.Date
 
-class FilmsListCloudDataSource(private val apiFactoryService: ApiFactoryService) {
+class FilmsListCloudDataSource(private val apiFactoryService: ApiFactoryService, private val baseUrl: String = ApiConstants.BASE_URL) {
 
     private var timeStamp: String = Date().time.toString()
 
     suspend fun getFilmsList(): Result<List<FilmsResponse>> =
         try {
-            val api = apiFactoryService.createApi(ApiRestService::class.java, ApiConstants.BASE_URL)
+            val api = apiFactoryService.createApi(ApiRestService::class.java, baseUrl)
             val response = api.getFilms(10, timeStamp, "name")
             Result.success(response)
         } catch (e: HttpException) {

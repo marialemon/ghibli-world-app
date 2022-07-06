@@ -8,7 +8,6 @@ import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
@@ -20,7 +19,8 @@ class FilmsListCloudDataSourceTest {
     @Before
     fun setUp() {
         mockWebServer.start(8080)
-        filmsListCloudDataSource = FilmsListCloudDataSource(ApiFactoryService())
+        val fakeUrl = mockWebServer.url("/").toString()
+        filmsListCloudDataSource = FilmsListCloudDataSource(ApiFactoryService(), fakeUrl)
     }
 
     @After
@@ -28,11 +28,11 @@ class FilmsListCloudDataSourceTest {
         mockWebServer.shutdown()
     }
 
-    // @Test por alguna razón no se falsea la respuesta
+    @Test
     fun `should return filmsList when response is 200ok`(): Unit = runBlocking {
         val jsonFilmsListResponse = this.javaClass.classLoader
             .getResourceAsStream("assets/filmsListResponse.json")
-            .bufferedReader().use { it.readText() }
+            .bufferedReader().use { it.readText() } // buffer -> almacén de datos
         val response = MockResponse()
             .addHeader("Content-Type", "application/json; charset=utf-8")
             .addHeader("Cache-Control", "no-cache")
