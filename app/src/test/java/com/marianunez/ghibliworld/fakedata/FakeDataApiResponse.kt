@@ -1,7 +1,9 @@
 package com.marianunez.ghibliworld.fakedata
 
+import com.bumptech.glide.load.HttpException
 import com.marianunez.ghibliworld.data.network.response.FilmsResponse
 import com.marianunez.ghibliworld.domain.model.FilmsModel
+import retrofit2.Response
 
 val fakeFilmsResponse1 = FilmsResponse(
     id = "2baf70d1-42bb-4437-b551-e5fed5a87abe",
@@ -72,3 +74,5 @@ val fakeFilmsListModel = listOf(
     fakeFilmsModel1,
     fakeFilmsModel2
 )
+
+val exception = Exception()

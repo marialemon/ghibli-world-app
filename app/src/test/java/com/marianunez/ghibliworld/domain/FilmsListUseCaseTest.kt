@@ -3,6 +3,7 @@ package com.marianunez.ghibliworld.domain
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import com.marianunez.ghibliworld.data.repository.FilmsListRepositoryImpl
+import com.marianunez.ghibliworld.fakedata.exception
 import com.marianunez.ghibliworld.fakedata.fakeFilmsListModel
 import com.marianunez.ghibliworld.fakedata.fakeFilmsListResponse
 import io.mockk.coEvery
@@ -23,7 +24,18 @@ class FilmsListUseCaseTest {
 
             val actual = filmsListUseCase.getFilmsList()
             assertThat(actual.getOrThrow()).isEqualTo(fakeFilmsListModel)
+        }
+    }
 
+    @Test
+    fun transformation_from_Response_to_Model_when_result_is_Failure() {
+        runBlocking {
+            coEvery {
+                filmsListRepository.getFilmsList()
+            } returns Result.failure(exception)
+
+            val actual = filmsListUseCase.getFilmsList()
+            assertThat(actual.exceptionOrNull()).isEqualTo(exception)
         }
     }
 }

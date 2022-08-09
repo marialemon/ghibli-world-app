@@ -1,13 +1,16 @@
 package com.marianunez.ghibliworld.data.datasource
 
+import assertk.assertThat
 import assertk.assertions.isEqualTo
 import com.marianunez.ghibliworld.data.datasource.cloud.FilmsListCloudDataSource
 import com.marianunez.ghibliworld.data.network.ApiFactoryService
+import com.marianunez.ghibliworld.fakedata.exception
 import com.marianunez.ghibliworld.fakedata.fakeFilmsListResponse
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
@@ -42,6 +45,6 @@ class FilmsListCloudDataSourceTest {
 
         val actual = filmsListCloudDataSource.getFilmsList()
 
-        assertk.assertThat(actual.getOrThrow()).isEqualTo(fakeFilmsListResponse)
+        assertThat(actual.getOrThrow()).isEqualTo(fakeFilmsListResponse)
     }
 }
