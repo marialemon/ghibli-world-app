@@ -17,7 +17,7 @@ import com.marianunez.ghibliworld.ui.FILM_TITLE
 import com.marianunez.ghibliworld.ui.filmdetail.FilmDetailActivity
 import com.marianunez.ghibliworld.ui.filmslist.adapter.FilmsListAdapter
 
-class FirstFragment : Fragment() {
+class FilmsListFragment : Fragment() {
 
     private var _binding: FragmentFilmsListBinding? = null
     private val binding get() = _binding!!
