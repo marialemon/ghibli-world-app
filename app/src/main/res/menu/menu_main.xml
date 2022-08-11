@@ -3,8 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.marianunez.ghibliworld.ui.MainActivity">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:id="@+id/action_films"
+        android:icon="@drawable/ic_view_list"
+        android:title="Films"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_characters"
+        android:icon="@drawable/ic_people"
+        android:title="Characters"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_favorites"
+        android:icon="@drawable/ic_favorites"
+        android:title="Favorites"
         app:showAsAction="never" />
 </menu>
