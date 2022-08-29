@@ -1,17 +1,14 @@
 package com.marianunez.ghibliworld.ui
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.navigation.findNavController
+import androidx.fragment.app.Fragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.marianunez.ghibliworld.R
 import com.marianunez.ghibliworld.databinding.ActivityMainBinding
+import com.marianunez.ghibliworld.ui.filmslist.FilmsListFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,35 +21,36 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        onMenuItemSelected()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
+    private fun onMenuItemSelected() {
+        val filmsListFragment = FilmsListFragment()
+        val characterListFragment = CharacterListFragment()
+        setCurrentFragment(filmsListFragment)
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_films -> true
-            R.id.action_characters -> true
-            R.id.action_favorites -> true
-            else -> super.onOptionsItemSelected(item)
+        val bottomNavBar = findViewById<BottomNavigationView>(R.id.bottomNavBar)
+        bottomNavBar.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.action_films -> {
+                    setCurrentFragment(filmsListFragment)
+                    true
+                }
+                R.id.action_characters -> {
+                    setCurrentFragment(characterListFragment)
+                    true
+                }
+                R.id.action_favorites -> true
+                else -> super.onOptionsItemSelected(item)
+            }
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
-    }
+    private fun setCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_content_main, fragment)
+            commit()
+        }
 }

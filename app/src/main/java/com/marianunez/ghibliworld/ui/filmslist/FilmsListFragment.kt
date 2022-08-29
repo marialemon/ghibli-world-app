@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.marianunez.ghibliworld.R
 import com.marianunez.ghibliworld.databinding.FragmentFilmsListBinding
 import com.marianunez.ghibliworld.domain.model.FilmsModel
 import com.marianunez.ghibliworld.ui.FILM_DESCRIPTION
@@ -17,7 +18,7 @@ import com.marianunez.ghibliworld.ui.FILM_TITLE
 import com.marianunez.ghibliworld.ui.filmdetail.FilmDetailActivity
 import com.marianunez.ghibliworld.ui.filmslist.adapter.FilmsListAdapter
 
-class FilmsListFragment : Fragment() {
+class FilmsListFragment : Fragment(R.layout.fragment_films_list) {
 
     private var _binding: FragmentFilmsListBinding? = null
     private val binding get() = _binding!!
